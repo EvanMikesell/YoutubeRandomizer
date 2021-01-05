@@ -1,0 +1,27 @@
+#startVideoButton {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.videoWrapperWrapper {
+  max-width: 865px;
+  margin: auto;
+}
+.videoWrapper {
+  max-width: 53rem;
+  max-height: 29.8125rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding-top: 56.25%;
+}
+.videoWrapper iframe {
+  border: 2px #38580d solid;
+  max-width: 53rem;
+  max-height: 29.8125rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
