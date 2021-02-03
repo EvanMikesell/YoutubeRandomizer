@@ -1,5 +1,7 @@
 # Youtube Randomizer
 
+https://ytrandomizer.netlify.app
+
 A react web app which uses the Youtube API to play random videos.
 
 The videos are chosen by using the API search function. The search is made using a random word picked out from a text file.
