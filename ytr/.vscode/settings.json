@@ -1,8 +1,0 @@
-{
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}",
-        ".vscode{,/**}"
-    ],
-    "appService.deploySubpath": ".",
-    "appService.defaultWebAppToDeploy": "/subscriptions/d1f89ca9-4232-4164-ba1e-7a8f4f0422ad/resourceGroups/resource/providers/Microsoft.Web/sites/ytrandomizer"
-}
