@@ -6,12 +6,19 @@ class Filter extends Component {
     category : 'No category',
     length : 'any',
     year : 0,
+    dropDownYears: [],
   };
+
+  componentDidMount() {
+    const currentYear = new Date().getFullYear();
+    const dropDownYears = Array.from({ length: currentYear - 2004 }, (_, i) => currentYear - i);
+    this.setState({ dropDownYears });
+  }
 
   //sending our filters up to app.js
   handleChange = (event) => {
     this.setState({ [event.target.name]: [event.target.value] }, () =>
-      this.props.updateFilters(this.state.category.toString(), this.state.length, this.state.year)
+      this.props.updateFilters(this.state.category, this.state.length, this.state.year)
     );
   };
 
@@ -58,25 +65,11 @@ class Filter extends Component {
           <label id="year">Year:</label>
           <select id="yearDropDown" name="year" onChange={this.handleChange}>
             <option value="0">Any Year</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
+            {this.state.dropDownYears.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
           </select>
         </div>
       </form>
