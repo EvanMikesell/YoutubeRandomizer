@@ -23,7 +23,7 @@ class App extends Component {
 
   //getting values from our filter
   updateFilters(categoryName, duration, selectedYear) {
-    let categoryNumber = utils.getCategoryMap()
+    let categoryNumber = utils.getCategoryMap().get(categoryName)
     this.setState({ category: categoryNumber}); 
     this.setState({ length: duration}); 
     this.setState({ year: selectedYear}); 
@@ -37,13 +37,12 @@ class App extends Component {
     console.log("Chosen Keyword: " + keyword);
     const youtubeAPIKey = "AIzaSyAWwZk3tMo_OZp0JZ9Y17oxykJpng6Q-nY";
 
-    let baseApiUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=" + youtubeAPIKey;
+    let baseApiUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&type=video&key=" + youtubeAPIKey;
     baseApiUrl = this.applyFilters(baseApiUrl);
     let apiUrlWithKeyword = baseApiUrl + "&q=" + keyword
 
     //make API call
     let res = await fetch(apiUrlWithKeyword);
-    console.log(res)
     let data = await res.json(); 
     let searchLength = 0;
 
@@ -98,7 +97,6 @@ class App extends Component {
     try {
       const response = await fetch("/common-words.json");
       const data = await response.json();
-      console.log(data);
       this.setState({ searchWords: data });
     } catch (error) {
       console.error(error);

@@ -25,4 +25,4 @@ function getCategoryMap() {
 const categories = {
     getCategoryMap
   };
-  export default categories;
+export default categories;
