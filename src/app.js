@@ -2,27 +2,7 @@ import React, { Component } from "react";
 import Title from "./components/title.js";
 import MiddleRow from "./components/middleRow.js";
 import EmbeddedVideo from "./components/embeddedVideo.js";
-
-//map containing categories and their ID values (for example, the ID for Film & Action is 1)
-const catagoriesMap = new Map();
-catagoriesMap.set("No category", 0);
-catagoriesMap.set("Film & Animation", 1);
-catagoriesMap.set("Autos & Vehicles", 2);
-catagoriesMap.set("Music", 10);
-catagoriesMap.set("Pets & Animals", 15);
-catagoriesMap.set("Sports", 17);
-catagoriesMap.set("Travel & Events", 19);
-catagoriesMap.set("Gaming", 20);   
-catagoriesMap.set("People & Blogs", 22);
-catagoriesMap.set("Comedy", 23);
-catagoriesMap.set("Entertainment", 24);
-catagoriesMap.set("News & Politics", 25);
-catagoriesMap.set("Howto & Style", 26);
-catagoriesMap.set("Education", 27);
-catagoriesMap.set("Science & Technology", 28);
-catagoriesMap.set("Nonprofits & Activism", 29);
-catagoriesMap.set("Movies", 30);
-catagoriesMap.set("Trailers", 44);
+import utils from  "./utils.js";
 
 class App extends Component {
   constructor(props){
@@ -38,13 +18,12 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log("component did mount");
     await this.createWordList();
   }
 
   //getting values from our filter
   updateFilters(categoryName, duration, selectedYear) {
-    let categoryNumber = catagoriesMap.get(categoryName);
+    let categoryNumber = utils.getCategoryMap()
     this.setState({ category: categoryNumber}); 
     this.setState({ length: duration}); 
     this.setState({ year: selectedYear}); 
@@ -58,16 +37,13 @@ class App extends Component {
     console.log("Chosen Keyword: " + keyword);
     const youtubeAPIKey = "AIzaSyAWwZk3tMo_OZp0JZ9Y17oxykJpng6Q-nY";
 
-    //api url before adding our values from the filters
     let baseApiUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&key=" + youtubeAPIKey;
-    
-    //filter by a category
     baseApiUrl = this.applyFilters(baseApiUrl);
-
-    //apply our keyword in a new variable
     let apiUrlWithKeyword = baseApiUrl + "&q=" + keyword
 
+    //make API call
     let res = await fetch(apiUrlWithKeyword);
+    console.log(res)
     let data = await res.json(); 
     let searchLength = 0;
 
@@ -85,7 +61,7 @@ class App extends Component {
       res = await fetch(baseApiUrl);
       data = await res.json(); 
       searchLength = data.items.length;
-      //if a video couldn't be found, even without a keyword
+
       if (searchLength === 0){
         alert("Could not find a video. The selected filters may not be compatible with eachother.");
       }
