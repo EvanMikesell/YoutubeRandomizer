@@ -23,7 +23,10 @@ class App extends Component {
 
   //getting values from our filter
   updateFilters(categoryName, duration, selectedYear) {
-    let categoryNumber = utils.getCategoryMap().get(categoryName)
+    let categoryMap = utils.getCategoryMap();
+    let categoryNumber = categoryMap.get(categoryName);
+    console.log(categoryMap);
+    console.log("Here", categoryNumber);
     this.setState({ category: categoryNumber}); 
     this.setState({ length: duration}); 
     this.setState({ year: selectedYear}); 

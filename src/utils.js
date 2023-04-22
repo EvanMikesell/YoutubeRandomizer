@@ -1,24 +1,23 @@
 function getCategoryMap() {
-    const categoriesMap = new Map([
-        ["No category", 0],
-        ["Film & Animation", 1],
-        ["Autos & Vehicles", 2],
-        ["Music", 10],
-        ["Pets & Animals", 15],
-        ["Sports", 17],
-        ["Travel & Events", 19],
-        ["Gaming", 20],
-        ["People & Blogs", 22],
-        ["Comedy", 23],
-        ["Entertainment", 24],
-        ["News & Politics", 25],
-        ["Howto & Style", 26],
-        ["Education", 27],
-        ["Science & Technology", 28],
-        ["Nonprofits & Activism", 29],
-        ["Movies", 30],
-        ["Trailers", 44]
-      ]);
+    const categoriesMap = new Map();
+    categoriesMap.set("No category", 0);
+    categoriesMap.set("Film & Animation", 1);
+    categoriesMap.set("Autos & Vehicles", 2);
+    categoriesMap.set("Music", 10);
+    categoriesMap.set("Pets & Animals", 15);
+    categoriesMap.set("Sports", 17);
+    categoriesMap.set("Travel & Events", 19);
+    categoriesMap.set("Gaming", 20);   
+    categoriesMap.set("People & Blogs", 22);
+    categoriesMap.set("Comedy", 23);
+    categoriesMap.set("Entertainment", 24);
+    categoriesMap.set("News & Politics", 25);
+    categoriesMap.set("Howto & Style", 26);
+    categoriesMap.set("Education", 27);
+    categoriesMap.set("Science & Technology", 28);
+    categoriesMap.set("Nonprofits & Activism", 29);
+    categoriesMap.set("Movies", 30);
+    categoriesMap.set("Trailers", 44);
     return categoriesMap;
 }
 
